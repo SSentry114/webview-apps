@@ -1,0 +1,1 @@
+{"flutter":{"platforms":{"ios":{"default":{"projectId":"noti-app-h","appId":"1:144907436295:ios:5729f60ac66035940b05a2","uploadDebugSymbols":false,"fileOutput":"ios/Runner/GoogleService-Info.plist"}},"dart":{"lib/firebase_options.dart":{"projectId":"noti-app-h","configurations":{"ios":"1:144907436295:ios:5729f60ac66035940b05a2"}}}}}}
