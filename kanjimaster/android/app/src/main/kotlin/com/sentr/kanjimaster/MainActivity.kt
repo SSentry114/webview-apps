@@ -1,4 +1,4 @@
-package com.sentr.kanjimaster
+package com.sentry.kanjimaster
 
 import io.flutter.embedding.android.FlutterActivity
 

@@ -89,11 +89,11 @@ BEGIN
     BEGIN
         BLOCK "040904e4"
         BEGIN
-            VALUE "CompanyName", "com.sentr" "\0"
+            VALUE "CompanyName", "com.sentry" "\0"
             VALUE "FileDescription", "kanjimaster" "\0"
             VALUE "FileVersion", VERSION_AS_STRING "\0"
             VALUE "InternalName", "kanjimaster" "\0"
-            VALUE "LegalCopyright", "Copyright (C) 2025 com.sentr. All rights reserved." "\0"
+            VALUE "LegalCopyright", "Copyright (C) 2025 com.sentry. All rights reserved." "\0"
             VALUE "OriginalFilename", "kanjimaster.exe" "\0"
             VALUE "ProductName", "kanjimaster" "\0"
             VALUE "ProductVersion", VERSION_AS_STRING "\0"
