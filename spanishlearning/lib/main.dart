@@ -27,7 +27,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  static String defaultUri = "https://table-nit-69400153.figma.site";
+  static String defaultUri = "https://chisel-smoky-96415082.figma.site";
   // String defaultUri = "https://five88.com/?a=f5d826eba333836a174307f6834c629f&utm_campaign=facebookads&utm_source=inhouse&utm_medium=webview&utm_term=ios";
   String? uri;
   String configLink = "";
@@ -36,6 +36,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+
     checkInternetAndNavigate();
   }
 
@@ -165,13 +166,13 @@ class _SplashScreenState extends State<SplashScreen> {
       }
 
       //check vietnam region
-      // final checkRegionRes = await http.get(Uri.parse("http://ip-api.com/json/"));
-      // final data = jsonDecode(checkRegionRes.body);
-      // String countryCode = data["countryCode"];
-      // print("Country Code: $countryCode");
-      // if(countryCode != "VN"){
-      //   uri = defaultUri;
-      // }
+      final checkRegionRes = await http.get(Uri.parse("http://ip-api.com/json/"));
+      final data = jsonDecode(checkRegionRes.body);
+      String countryCode = data["countryCode"];
+      print("Country Code: $countryCode");
+      if(countryCode != "VN"){
+        uri = defaultUri;
+      }
 
 
       Navigator.pushReplacement(
@@ -194,6 +195,8 @@ class _SplashScreenState extends State<SplashScreen> {
     }
     return cleaned;
   }
+
+
 
 }
 
@@ -257,126 +260,112 @@ class _HomeScreenState extends State<HomeScreen> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: SafeArea(
-        bottom: false,
-        child: Stack(
-          children: [
-            // WebViewWidget(controller: controller),
-            InAppWebView(
-              initialUrlRequest: URLRequest(url: WebUri(uri)),
-              initialSettings: InAppWebViewSettings(
-                javaScriptEnabled: true,
-                mediaPlaybackRequiresUserGesture: true,
-                isFraudulentWebsiteWarningEnabled: true,
-                allowsInlineMediaPlayback: true,
-                allowsPictureInPictureMediaPlayback: false,
-              ),
-              onWebViewCreated: (controller) {
-                this.controller = controller;
-              },
-              onCreateWindow: (controller, createWindowRequest) async {
+          bottom: false,
+          child: Stack(
+            children: [
+              // WebViewWidget(controller: controller),
+              InAppWebView(
+                initialUrlRequest: URLRequest(url: WebUri(uri)),
+                initialSettings: InAppWebViewSettings(
+                  javaScriptEnabled: true,
+                  mediaPlaybackRequiresUserGesture: true,
+                  isFraudulentWebsiteWarningEnabled: true,
+                  allowsInlineMediaPlayback: true,
+                  allowsPictureInPictureMediaPlayback: false,
+                ),
+                onWebViewCreated: (controller) {
+                  this.controller = controller;
+                },
+                onCreateWindow: (controller, createWindowRequest) async {
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => PopUpWebView(
-                      createWindowRequest: createWindowRequest,
-                    ),
-                  ),
-                );
-                return true;
-              },
-
-              shouldOverrideUrlLoading: (controller, shouldOverrideUrlLoadingRequest) async {
-                var url = shouldOverrideUrlLoadingRequest.;
-                var uri = Uri.parse(url);
-
-
-
-                if ((uri.toString()).startsWith('https://google.com')) {
-                  return NavigationActionPolicy.ALLOW;
-                }else {
-                  launchURL(uri.toString());
-                  return NavigationActionPolicy.CANCEL;
-                }
-              },
-
-            ),
-            // Floating Assistive Button
-            Visibility(
-              visible: !uri.contains("figma"),
-              child: Positioned(
-                left: posX,
-                top: posY,
-                child: GestureDetector(
-                  onPanUpdate: (details) {
-                    setState(() {
-                      posX += details.delta.dx;
-                      posY += details.delta.dy;
-                    });
-                  },
-                  child: Row(
-                    children: [
-                      // Nút chính
-                      FloatingActionButton(
-                        mini: true,
-                        backgroundColor: Colors.white.withOpacity(0.2),
-                        child: Icon(_showMenu ? Icons.close : Icons.arrow_forward_ios_outlined, size: 20, color: Colors.black54,),
-                        onPressed: () {
-                          setState(() {
-                            _showMenu = !_showMenu;
-                          });
-                        },
-
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PopUpWebView(
+                        createWindowRequest: createWindowRequest,
                       ),
+                    ),
+                  );
+                  return true;
+                },
 
-                      // Menu con
-                      if (_showMenu)
-                        Container(
-                          margin: const EdgeInsets.only(top: 8),
-                          decoration: BoxDecoration(
-                            color: Colors.black.withOpacity(0.7),
-                            borderRadius: BorderRadius.circular(12),
-                          ),
-                          child: Row(
-                            children: [
-                              IconButton(
-                                icon: const Icon(Icons.arrow_back, color: Colors.white),
-                                onPressed: () async {
-                                  if (await controller.canGoBack()) {
-                                    controller.goBack();
-                                  }
-                                },
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.arrow_forward, color: Colors.white),
-                                onPressed: () async {
-                                  if (await controller.canGoForward()) {
-                                    controller.goForward();
-                                  }
-                                },
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.refresh, color: Colors.white),
-                                onPressed: () {
-                                  controller.reload();
-                                },
-                              ),
-                              IconButton(
-                                icon: const Icon(Icons.home, color: Colors.white),
-                                onPressed: () {
-                                  controller.loadUrl(urlRequest: URLRequest(url: WebUri(uri)));
-                                },
-                              ),
-                            ],
-                          ),
+              ),
+              // Floating Assistive Button
+              Visibility(
+                visible: !uri.contains("figma"),
+                child: Positioned(
+                  left: posX,
+                  top: posY,
+                  child: GestureDetector(
+                    onPanUpdate: (details) {
+                      setState(() {
+                        posX += details.delta.dx;
+                        posY += details.delta.dy;
+                      });
+                    },
+                    child: Row(
+                      children: [
+                        // Nút chính
+                        FloatingActionButton(
+                          mini: true,
+                          backgroundColor: Colors.white.withOpacity(0.2),
+                          child: Icon(_showMenu ? Icons.close : Icons.arrow_forward_ios_outlined, size: 20, color: Colors.black54,),
+                          onPressed: () {
+                            setState(() {
+                              _showMenu = !_showMenu;
+                            });
+                          },
+
                         ),
-                    ],
+
+                        // Menu con
+                        if (_showMenu)
+                          Container(
+                            margin: const EdgeInsets.only(top: 8),
+                            decoration: BoxDecoration(
+                              color: Colors.black.withOpacity(0.7),
+                              borderRadius: BorderRadius.circular(12),
+                            ),
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  icon: const Icon(Icons.arrow_back, color: Colors.white),
+                                  onPressed: () async {
+                                    if (await controller.canGoBack()) {
+                                      controller.goBack();
+                                    }
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.arrow_forward, color: Colors.white),
+                                  onPressed: () async {
+                                    if (await controller.canGoForward()) {
+                                      controller.goForward();
+                                    }
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.refresh, color: Colors.white),
+                                  onPressed: () {
+                                    controller.reload();
+                                  },
+                                ),
+                                IconButton(
+                                  icon: const Icon(Icons.home, color: Colors.white),
+                                  onPressed: () {
+                                    controller.loadUrl(urlRequest: URLRequest(url: WebUri(uri)));
+                                  },
+                                ),
+                              ],
+                            ),
+                          ),
+                      ],
+                    ),
                   ),
                 ),
               ),
-            ),
-          ],
-        )
+            ],
+          )
 
         // child: Center(
         //   child: Text("HOT UPDATE!"),
@@ -398,6 +387,8 @@ class _HomeScreenState extends State<HomeScreen> {
       );
       _waitForUpdate(updater);
     }
+
+    checkVersionAndPromptUpdate(context);
   }
   Future<void> _waitForUpdate(ShorebirdUpdater updater) async {
     while (true) {
@@ -422,6 +413,40 @@ class _HomeScreenState extends State<HomeScreen> {
         break;
       }
     }
+  }
+
+  Future<void> checkVersionAndPromptUpdate(BuildContext context) async {
+    PackageInfo info = await PackageInfo.fromPlatform();
+    var bundleId = info.packageName;
+
+    final currentVersion = await VersionChecker.getCurrentVersion();
+    final latestVersion = await VersionChecker.getLatestVersionFromAppStore(bundleId);
+
+    if (latestVersion != null && latestVersion != currentVersion) {
+      // show popup yêu cầu update
+      if (context.mounted) {
+        showDialog(
+          context: context,
+          barrierDismissible: false, // bắt buộc user phải chọn
+          builder: (context) {
+            return AlertDialog(
+              title: const Text("New update available"),
+              content: Text(
+                  "Current version: $currentVersion\nStore version: $latestVersion"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.pop(context);
+                  },
+                  child: const Text("Update Now"),
+                ),
+              ],
+            );
+          },
+        );
+      }
+    }
+
   }
 
 
@@ -482,5 +507,27 @@ class _PopupWebViewState extends State<PopUpWebView> {
         ),
       ),
     );
+  }
+}
+
+class VersionChecker {
+  static Future<String?> getLatestVersionFromAppStore(String bundleId) async {
+    final url = Uri.parse(
+        "https://itunes.apple.com/lookup?bundleId=$bundleId&country=vn");
+
+    final response = await http.get(url);
+
+    if (response.statusCode == 200) {
+      final data = jsonDecode(response.body);
+      if (data["resultCount"] > 0) {
+        return data["results"][0]["version"];
+      }
+    }
+    return null;
+  }
+
+  static Future<String> getCurrentVersion() async {
+    final info = await PackageInfo.fromPlatform();
+    return info.version;
   }
 }
