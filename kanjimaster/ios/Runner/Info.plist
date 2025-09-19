@@ -49,5 +49,11 @@
     <true/>
     <key>MediaPlaybackRequiresUserAction</key>
     <true/>
+    <key>LSApplicationQueriesSchemes</key>
+    <array>
+    <string>mailto</string>
+    <string>tel</string>
+    <string>sms</string>
+    </array>
 </dict>
 </plist>

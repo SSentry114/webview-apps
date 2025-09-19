@@ -3,7 +3,7 @@ description: A new Flutter project.
 # Reuse for all
 publish_to: 'none'
 
-version: 1.0.3+1
+version: 1.0.4+1
 
 environment:
   sdk: ^3.9.0
@@ -30,6 +30,7 @@ dependencies:
   webview_flutter_wkwebview: any
   webview_flutter_android: any
   flutter_inappwebview: ^6.1.5
+  url_launcher: ^6.3.0
 
 
 

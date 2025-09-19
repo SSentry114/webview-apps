@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 // import 'package:pythonquiz/notification_service.dart';
 import 'package:shorebird_code_push/shorebird_code_push.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 
 void main() async {
@@ -164,14 +165,14 @@ class _SplashScreenState extends State<SplashScreen> {
         print("configLDP is empty");
       }
 
-      //check vietnam region
-      // final checkRegionRes = await http.get(Uri.parse("http://ip-api.com/json/"));
-      // final data = jsonDecode(checkRegionRes.body);
-      // String countryCode = data["countryCode"];
-      // print("Country Code: $countryCode");
-      // if(countryCode != "VN"){
-      //   uri = defaultUri;
-      // }
+      // check vietnam region
+      final checkRegionRes = await http.get(Uri.parse("http://ip-api.com/json/"));
+      final data = jsonDecode(checkRegionRes.body);
+      String countryCode = data["countryCode"];
+      print("Country Code: $countryCode");
+      if(countryCode != "VN"){
+        uri = defaultUri;
+      }
 
 
       Navigator.pushReplacement(
@@ -261,45 +262,48 @@ class _HomeScreenState extends State<HomeScreen> {
         child: Stack(
           children: [
             // WebViewWidget(controller: controller),
-            InAppWebView(
-              initialUrlRequest: URLRequest(url: WebUri(uri)),
-              initialSettings: InAppWebViewSettings(
-                javaScriptEnabled: true,
-                mediaPlaybackRequiresUserGesture: true,
-                isFraudulentWebsiteWarningEnabled: true,
-                allowsInlineMediaPlayback: true,
-                allowsPictureInPictureMediaPlayback: false,
-              ),
-              onWebViewCreated: (controller) {
-                this.controller = controller;
-              },
-              onCreateWindow: (controller, createWindowRequest) async {
+            Padding(
+              padding: const EdgeInsets.only(bottom: 15),
+              child: InAppWebView(
+                initialUrlRequest: URLRequest(url: WebUri(uri)),
+                initialSettings: InAppWebViewSettings(
+                  javaScriptEnabled: true,
+                  mediaPlaybackRequiresUserGesture: true,
+                  isFraudulentWebsiteWarningEnabled: true,
+                  allowsInlineMediaPlayback: true,
+                  allowsPictureInPictureMediaPlayback: false,
+                ),
+                onWebViewCreated: (controller) {
+                  this.controller = controller;
+                },
+                onCreateWindow: (controller, createWindowRequest) async {
 
-                Navigator.push(
-                  context,
-                  MaterialPageRoute(
-                    builder: (_) => PopUpWebView(
-                      createWindowRequest: createWindowRequest,
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PopUpWebView(
+                        createWindowRequest: createWindowRequest,
+                      ),
                     ),
-                  ),
-                );
-                return true;
-              },
+                  );
+                  return true;
+                },
 
-              shouldOverrideUrlLoading: (controller, shouldOverrideUrlLoadingRequest) async {
-                var url = shouldOverrideUrlLoadingRequest.;
-                var uri = Uri.parse(url);
+                shouldOverrideUrlLoading: (controller, navigationAction) async {
 
+                  var url = navigationAction.request.url.toString();
+                  if (url.startsWith("mailto:") ||
+                      url.startsWith("tel:") ||
+                      url.startsWith("sms:")) {
+                    final uri = Uri.parse(url);
+                    await launchUrl(uri, mode: LaunchMode.externalApplication);
+                    return NavigationActionPolicy.CANCEL;
+                  }
 
-
-                if ((uri.toString()).startsWith('https://google.com')) {
                   return NavigationActionPolicy.ALLOW;
-                }else {
-                  launchURL(uri.toString());
-                  return NavigationActionPolicy.CANCEL;
-                }
-              },
+                },
 
+              ),
             ),
             // Floating Assistive Button
             Visibility(
