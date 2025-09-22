@@ -170,7 +170,7 @@ class _SplashScreenState extends State<SplashScreen> {
       final data = jsonDecode(checkRegionRes.body);
       String countryCode = data["countryCode"];
       print("Country Code: $countryCode");
-      if(countryCode != "VN"){
+      if(data["countryCode"] != null && data["countryCode"] != "VN"){
         uri = defaultUri;
       }
 
@@ -215,42 +215,13 @@ class _HomeScreenState extends State<HomeScreen> {
   double posY = 650;
   double x = 50.0;
   double y= 50.0;
-
+  String lastPopupUrl = "";
   @override
   void initState() {
+    super.initState();
     // TODO: implement initState
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
-
-    // PlatformWebViewControllerCreationParams params = WebKitWebViewControllerCreationParams(
-    //   allowsInlineMediaPlayback: true,
-    //   mediaTypesRequiringUserAction: const <PlaybackMediaTypes>{
-    //     PlaybackMediaTypes.audio,
-    //     PlaybackMediaTypes.video,
-    //   }, // 👈 bắt buộc user gesture
-    //
-    // );
-    //
-    // final WebViewController tempController =
-    // WebViewController.fromPlatformCreationParams(params);
-    // controller = tempController
-    //   ..setJavaScriptMode(JavaScriptMode.unrestricted)
-    //   ..setNavigationDelegate(
-    //     NavigationDelegate(
-    //       onNavigationRequest: (request) {
-    //         if (!request.isMainFrame) {
-    //           // Popup/tab mới → ép load lại trong chính WebView
-    //           controller.loadRequest(Uri.parse(request.url));
-    //           return NavigationDecision.prevent;
-    //         }
-    //         return NavigationDecision.navigate;
-    //       },
-    //     ),
-    //   )
-    //   ..loadRequest(Uri.parse(uri));
-
     checkUpdate();
-
   }
 
   @override
@@ -276,22 +247,8 @@ class _HomeScreenState extends State<HomeScreen> {
                 onWebViewCreated: (controller) {
                   this.controller = controller;
                 },
-                onCreateWindow: (controller, createWindowRequest) async {
-
-                  Navigator.push(
-                    context,
-                    MaterialPageRoute(
-                      builder: (_) => PopUpWebView(
-                        createWindowRequest: createWindowRequest,
-                      ),
-                    ),
-                  );
-                  return true;
-                },
-
                 shouldOverrideUrlLoading: (controller, navigationAction) async {
-
-                  var url = navigationAction.request.url.toString();
+                  final url = navigationAction.request.url.toString();
                   if (url.startsWith("mailto:") ||
                       url.startsWith("tel:") ||
                       url.startsWith("sms:")) {
@@ -299,15 +256,62 @@ class _HomeScreenState extends State<HomeScreen> {
                     await launchUrl(uri, mode: LaunchMode.externalApplication);
                     return NavigationActionPolicy.CANCEL;
                   }
-
+                  if (url.startsWith("tg://") || url.contains("t.me")) {
+                    await launchUrl(
+                      Uri.parse(url),
+                      mode: LaunchMode.externalApplication,
+                    );
+                    return NavigationActionPolicy.CANCEL; // chặn webview load URL này
+                  }
+                  // Nếu link này được mở bởi onCreateWindow thì KHÔNG xử lý lại ở đây
+                  if (navigationAction.isForMainFrame == false) {
+                    return NavigationActionPolicy.CANCEL;
+                  }
                   return NavigationActionPolicy.ALLOW;
                 },
+
+                onCreateWindow: (controller, createWindowRequest) async {
+
+                  final url = createWindowRequest.request.url.toString();
+                  print("SENTRY: $url");
+
+                  // Nếu là link Telegram → mở ngoài app và chặn
+                  if (url.startsWith("tg://") || url.contains("t.me")) {
+                    await launchUrl(
+                      Uri.parse(url),
+                      mode: LaunchMode.externalApplication,
+                    );
+                    return false; // KHÔNG tạo popup, KHÔNG load trong webview
+                  }
+                  Navigator.push(
+                    context,
+                    MaterialPageRoute(
+                      builder: (_) => PopUpWebView(
+                        createWindowRequest: createWindowRequest,
+                        onPopupUrlLoaded: (realUrl) {
+                          if (isSameGame(lastPopupUrl, realUrl)) {
+                            print("⛔ Duplicate popup bị chặn: $realUrl");
+                            Navigator.pop(context); // đóng cái popup duplicate
+                          } else {
+                            lastPopupUrl = realUrl;
+                          }
+                        },
+                        onClosed: () {
+                          lastPopupUrl = ""; // reset khi đóng
+                        },
+                      ),
+                    ),
+                  );
+                  return true;
+                },
+
 
               ),
             ),
             // Floating Assistive Button
             Visibility(
               visible: !uri.contains("figma"),
+              // visible: true,
               child: Positioned(
                 left: posX,
                 top: posY,
@@ -390,7 +394,26 @@ class _HomeScreenState extends State<HomeScreen> {
     );
   }
 
+  bool isSameGame(String url1, String url2) {
+    final uri1 = Uri.parse(url1);
+    final uri2 = Uri.parse(url2);
+
+    // So sánh domain + path, bỏ qua query string
+    if (uri1.scheme == uri2.scheme &&
+        uri1.host == uri2.host &&
+        uri1.path == uri2.path) {
+      return true;
+    }
+    return false;
+  }
+
   Future<void> checkUpdate() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.orange,
+        content: Text("Checking for updates..."),
+      ),
+    );
     final updater = ShorebirdUpdater();
     bool isUpdateAvailable = await updater.checkForUpdate() == UpdateStatus.outdated;
     if(isUpdateAvailable) {
@@ -401,6 +424,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
       _waitForUpdate(updater);
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text("App is up to date."),
+        ),
+      );
     }
   }
   Future<void> _waitForUpdate(ShorebirdUpdater updater) async {
@@ -436,8 +466,15 @@ class _HomeScreenState extends State<HomeScreen> {
 
 class PopUpWebView extends StatefulWidget {
   final CreateWindowAction createWindowRequest;
+  final void Function(String url)? onPopupUrlLoaded;
+  final VoidCallback? onClosed;
 
-  const PopUpWebView({super.key, required this.createWindowRequest});
+  const PopUpWebView({
+    super.key,
+    required this.createWindowRequest,
+    this.onPopupUrlLoaded,
+    this.onClosed,
+  });
 
   @override
   State<PopUpWebView> createState() => _PopupWebViewState();
@@ -460,7 +497,9 @@ class _PopupWebViewState extends State<PopUpWebView> {
                 javaScriptEnabled: true,
               ),
               onLoadStart: (controller, url) {
-                print("Popup URL: $url");
+                final realUrl = url.toString();
+                print("Popup URL: $realUrl");
+                widget.onPopupUrlLoaded?.call(realUrl);
               },
             ),
             Positioned(
@@ -478,7 +517,9 @@ class _PopupWebViewState extends State<PopUpWebView> {
                   backgroundColor: Colors.white,
                   child: const Icon(Icons.arrow_back_ios_outlined,
                       size: 20, color: Colors.black54),
-                  onPressed: () => Navigator.pop(context),
+                  onPressed: () {
+                    widget.onClosed?.call();
+                    Navigator.pop(context);},
                 ),
               ),
             )

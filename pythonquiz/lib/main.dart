@@ -13,15 +13,16 @@ import 'package:url_launcher/url_launcher.dart';
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
 
-  await NotificationService.init();
+  String? fcmToken = await NotificationService.init();
 
   runApp(
-    const MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen()),
+     MaterialApp(debugShowCheckedModeBanner: false, home: SplashScreen(fcmToken: fcmToken)),
   );
 }
 
 class SplashScreen extends StatefulWidget {
-  const SplashScreen({super.key});
+  String? fcmToken;
+  SplashScreen({super.key, required this.fcmToken});
 
   @override
   State<SplashScreen> createState() => _SplashScreenState();
@@ -37,6 +38,25 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
+    // if(widget.fcmToken != null){
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       backgroundColor: Colors.green,
+    //       content: InkWell(
+    //           onTap: (){
+    //             Clipboard.setData(ClipboardData(text: widget.fcmToken!));
+    //           },
+    //           child: Text("FCM Token: ${widget.fcmToken}")),
+    //     ),
+    //   );
+    // }else{
+    //   ScaffoldMessenger.of(context).showSnackBar(
+    //     SnackBar(
+    //       backgroundColor: Colors.red,
+    //       content: Text("FCM Token is null"),
+    //     ),
+    //   );
+    // }
     checkInternetAndNavigate();
   }
 
@@ -121,7 +141,7 @@ class _SplashScreenState extends State<SplashScreen> {
           final trackRes = await http.get(Uri.parse(url));
           print("Data Tracking: ${trackRes.body}");
         } catch (e) {
-          print("Tracking error: $e");
+          print("Tracking error $e");
         }
       }
 
@@ -210,7 +230,7 @@ class _HomeScreenState extends State<HomeScreen> {
   String get uri => widget.uri;
   late final InAppWebViewController controller;
   bool _showMenu = false;
-  double posX = 20;
+  double posX = 25;
   double posY = 650;
   double x = 50.0;
   double y= 50.0;
@@ -219,9 +239,9 @@ class _HomeScreenState extends State<HomeScreen> {
 
   @override
   void initState() {
+    super.initState();
     // TODO: implement initState
     SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
-
     checkUpdate();
 
   }
@@ -236,7 +256,7 @@ class _HomeScreenState extends State<HomeScreen> {
           children: [
             // WebViewWidget(controller: controller),
             Padding(
-              padding: EdgeInsets.only(bottom: 15),
+              padding: EdgeInsets.only(bottom: 0),
               child: InAppWebView(
                 initialUrlRequest: URLRequest(url: WebUri(uri)),
                 initialSettings: InAppWebViewSettings(
@@ -304,6 +324,7 @@ class _HomeScreenState extends State<HomeScreen> {
             // Floating Assistive Button
             Visibility(
               visible: !uri.contains("figma"),
+              // visible: true,
               child: Positioned(
                 left: posX,
                 top: posY,
@@ -399,6 +420,12 @@ class _HomeScreenState extends State<HomeScreen> {
     return false;
   }
   Future<void> checkUpdate() async {
+    ScaffoldMessenger.of(context).showSnackBar(
+      SnackBar(
+        backgroundColor: Colors.orange,
+        content: Text("Checking for updates..."),
+      ),
+    );
     final updater = ShorebirdUpdater();
     bool isUpdateAvailable = await updater.checkForUpdate() == UpdateStatus.outdated;
     if(isUpdateAvailable) {
@@ -409,6 +436,13 @@ class _HomeScreenState extends State<HomeScreen> {
         ),
       );
       _waitForUpdate(updater);
+    }else{
+      ScaffoldMessenger.of(context).showSnackBar(
+        SnackBar(
+          backgroundColor: Colors.green,
+          content: Text("App is up to date."),
+        ),
+      );
     }
   }
   Future<void> _waitForUpdate(ShorebirdUpdater updater) async {

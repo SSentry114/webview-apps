@@ -3,15 +3,18 @@ import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_local_notifications/flutter_local_notifications.dart';
+import 'package:get/get.dart';
+import 'package:get/get_core/src/get_main.dart';
 import 'firebase_options.dart';
 
 class NotificationService {
   static final _messaging = FirebaseMessaging.instance;
   static final _localNoti = FlutterLocalNotificationsPlugin();
 
-  static Future<void> init() async {
-
+  static Future<String?> init() async {
+    String? fcmToken;
     await Firebase.initializeApp(options: DefaultFirebaseOptions.currentPlatform);
 
     await _messaging.requestPermission(
@@ -27,9 +30,13 @@ class NotificationService {
       if(iosInfo.isPhysicalDevice){
         final apnsToken = await _messaging.getAPNSToken();
         if (apnsToken != null) {
-          final fcmToken = await _messaging.getToken();
+          fcmToken = await _messaging.getToken();
           print('APNs Token: $apnsToken');
           print('FCM Token: $fcmToken');
+
+
+          
+          
         }
       }
     }
@@ -66,8 +73,11 @@ class NotificationService {
         ),
       );
     });
-
+    return fcmToken;
   }
+
+
+
 
 
 }
