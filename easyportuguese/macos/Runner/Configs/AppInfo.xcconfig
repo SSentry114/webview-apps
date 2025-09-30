@@ -8,7 +8,7 @@
 PRODUCT_NAME = easyportuguese
 
 // The application's bundle identifier
-PRODUCT_BUNDLE_IDENTIFIER = com.seni.easyportuguese
+PRODUCT_BUNDLE_IDENTIFIER = com.senii.easyportuguese
 
 // The copyright displayed in application information
-PRODUCT_COPYRIGHT = Copyright © 2025 com.seni. All rights reserved.
+PRODUCT_COPYRIGHT = Copyright © 2025 com.senii. All rights reserved.

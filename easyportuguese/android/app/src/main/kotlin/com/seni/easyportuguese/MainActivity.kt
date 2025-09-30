@@ -1,4 +1,4 @@
-package com.seni.easyportuguese
+package com.senii.easyportuguese
 
 import io.flutter.embedding.android.FlutterActivity
 

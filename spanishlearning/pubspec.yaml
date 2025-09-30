@@ -1,10 +1,10 @@
-name: spanishlearningv2
+name: spanishlearningz
 
 description: A new Flutter project.
 # Reuse for all
 publish_to: 'none'
 
-version: 1.0.2+1
+version: 1.0.3+1
 
 environment:
   sdk: ^3.9.0
