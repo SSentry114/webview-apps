@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "128336855094",
+    "project_id": "app-z8---metrobus-bologna",
+    "storage_bucket": "app-z8---metrobus-bologna.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:128336855094:android:adf85d05e6e5bc46f19897",
+        "android_client_info": {
+          "package_name": "com.senii.easyportuguese"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAiCGorG7k8Ek6UOVP-OYnPuVlZ5lfV560"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
