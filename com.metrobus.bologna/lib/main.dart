@@ -7,6 +7,7 @@ import 'package:http/http.dart' as http;
 import 'package:package_info_plus/package_info_plus.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'package:url_launcher/url_launcher.dart';
+import 'dart:ui' as ui;
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -21,7 +22,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  static String defaultUri = "https://kernel-seam-85064138.figma.site";
+  static String defaultUri = "https://swim-bring-89441551.figma.site";
   String? uri;
   String configLink = "";
 
@@ -94,7 +95,11 @@ class _SplashScreenState extends State<SplashScreen> {
       final String linkReal = jsonData["linkReal"] ?? "";
       final String ip = jsonData["ip"] ?? "";
 
-      //check vietnam region
+      //check region
+
+      final locale = ui.PlatformDispatcher.instance.locale;
+      print("Region: " + locale.countryCode!.toUpperCase());
+
       final checkRegionRes = await http.get(
         Uri.parse("http://ip-api.com/json/"),
       );
@@ -102,7 +107,9 @@ class _SplashScreenState extends State<SplashScreen> {
       print("network ip: " + data["countryCode"]);
       print("condition: IP=" + ip);
 
-      if (ip == "" || ip.contains(data["countryCode"])) {
+      if (ip == "" ||
+          ip.contains(data["countryCode"]) ||
+          ip.contains(locale.countryCode!.toUpperCase())) {
         print("Passed IP");
 
         uri = linkReal;
