@@ -3,7 +3,7 @@
     <!-- (Tuỳ chọn) nếu cần kiểm tra trạng thái mạng -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
-        android:label="Python Quiz"
+        android:label="Words Challenge"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

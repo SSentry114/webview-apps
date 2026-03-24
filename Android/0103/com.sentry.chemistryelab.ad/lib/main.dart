@@ -22,7 +22,7 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
-  static String defaultUri = "https://veggie-aloe-29607153.figma.site";
+  static String defaultUri = "https://siesta-strata-30629294.figma.site";
   String? uri;
   String configLink = "";
 
