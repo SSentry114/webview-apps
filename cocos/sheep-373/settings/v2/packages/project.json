@@ -1,0 +1,17 @@
+{
+  "__version__": "1.0.4",
+  "general": {
+    "designResolution": {
+      "width": 1284,
+      "height": 2274,
+      "fitHeight": true,
+      "fitWidth": false
+    }
+  },
+  "custom_joint_texture_layouts": [],
+  "fbx": {
+    "material": {
+      "smart": false
+    }
+  }
+}

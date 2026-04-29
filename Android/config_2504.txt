@@ -1,0 +1,9 @@
+# Format: OLD_PACKAGE|NEW_PACKAGE|NEW_URL
+com.dailyroutes.amman|com.travelroutes.skopje|https://game-audio-29240079.figma.site
+com.mapsway.tashkent|com.smartbus.riyadh|https://park-wheat-44215946.figma.site
+com.moving.bangalore|com.routeinfo.kathmandu|https://gala-kiwi-94266553.figma.site
+com.roadfinder.surabaya|com.yourroutes.lahore|https://strong-grey-51884053.figma.site
+com.routee.astana|com.buslive.san.francisco|https://pine-brook-00547180.figma.site
+com.routeshere.vientiane|com.localroute.liverpool|https://face-cider-44361181.figma.site
+com.routetimes.muscat|com.trans.washington.dc|https://glove-divide-43913728.figma.site
+com.yourmap.manama|com.circlebus.miami|https://easing-series-31136324.figma.site

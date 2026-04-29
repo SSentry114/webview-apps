@@ -1,0 +1,74 @@
+System.register("q-bundled:///fs/cocos/render-scene/utils.js", ["../gfx/index.js"], function (_export, _context) {
+  "use strict";
+
+  var Attribute, BufferInfo, InputAssemblerInfo, AttributeName, BufferUsageBit, Format, MemoryUsageBit;
+
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  function createIA(device, data) {
+    if (!data.positions) {
+      console.error('The data must have positions field');
+      return null;
+    }
+
+    const verts = [];
+    const vcount = data.positions.length / 3;
+
+    for (let i = 0; i < vcount; ++i) {
+      verts.push(data.positions[3 * i], data.positions[3 * i + 1], data.positions[3 * i + 2]);
+
+      if (data.normals) {
+        verts.push(data.normals[3 * i], data.normals[3 * i + 1], data.normals[3 * i + 2]);
+      }
+
+      if (data.uvs) {
+        verts.push(data.uvs[2 * i], data.uvs[2 * i + 1]);
+      }
+
+      if (data.colors) {
+        verts.push(data.colors[3 * i], data.colors[3 * i + 1], data.colors[3 * i + 2]);
+      }
+    }
+
+    const vfmt = [];
+    vfmt.push(new Attribute(AttributeName.ATTR_POSITION, Format.RGB32F));
+
+    if (data.normals) {
+      vfmt.push(new Attribute(AttributeName.ATTR_NORMAL, Format.RGB32F));
+    }
+
+    if (data.uvs) {
+      vfmt.push(new Attribute(AttributeName.ATTR_TEX_COORD, Format.RG32F));
+    }
+
+    if (data.colors) {
+      vfmt.push(new Attribute(AttributeName.ATTR_COLOR, Format.RGB32F));
+    }
+
+    const vb = device.createBuffer(new BufferInfo(BufferUsageBit.VERTEX | BufferUsageBit.TRANSFER_DST, MemoryUsageBit.DEVICE, verts.length * 4, verts.length * 4 / vcount));
+    vb.update(new Float32Array(verts));
+    let ib = null;
+
+    if (data.indices) {
+      ib = device.createBuffer(new BufferInfo(BufferUsageBit.INDEX | BufferUsageBit.TRANSFER_DST, MemoryUsageBit.DEVICE, data.indices.length * 2, 2));
+      ib.update(new Uint16Array(data.indices));
+    }
+
+    return device.createInputAssembler(new InputAssemblerInfo(vfmt, [vb], ib));
+  }
+
+  _export("createIA", createIA);
+
+  return {
+    setters: [function (_gfxIndexJs) {
+      Attribute = _gfxIndexJs.Attribute;
+      BufferInfo = _gfxIndexJs.BufferInfo;
+      InputAssemblerInfo = _gfxIndexJs.InputAssemblerInfo;
+      AttributeName = _gfxIndexJs.AttributeName;
+      BufferUsageBit = _gfxIndexJs.BufferUsageBit;
+      Format = _gfxIndexJs.Format;
+      MemoryUsageBit = _gfxIndexJs.MemoryUsageBit;
+    }],
+    execute: function () {}
+  };
+});

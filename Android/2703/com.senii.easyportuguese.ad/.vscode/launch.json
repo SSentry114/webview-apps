@@ -1,0 +1,10 @@
+{
+    "configurations": [
+        {
+            "name": "com.senii.easyportuguese.ad (Flutter)",
+            "program": "lib/main.dart",
+            "request": "launch",
+            "type": "dart"
+        }
+    ]
+}

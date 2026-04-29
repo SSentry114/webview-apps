@@ -1,0 +1,1 @@
+{"version":3,"sources":["../../../../../../../../../cocos/3d/misc/index.ts"],"names":["find","toPPM","readMesh","createMesh","MeshUtils","readBuffer","writeBuffer","mapBuffer"],"mappings":";;;;;wCAwBSA,I;;8BACAC,K;;sCACAC,Q;;;kCACAC,U;iCAAYC;;;;8BACZC,U;+BAAYC,W;6BAAaC"}

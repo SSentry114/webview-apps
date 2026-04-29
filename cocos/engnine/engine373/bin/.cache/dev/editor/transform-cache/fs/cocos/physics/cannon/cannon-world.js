@@ -1,0 +1,190 @@
+System.register("q-bundled:///fs/cocos/physics/cannon/cannon-world.js", ["@cocos/cannon", "../../core/index.js", "./cannon-util.js", "./shapes/cannon-shape.js", "./cannon-shared-body.js"], function (_export, _context) {
+  "use strict";
+
+  var CANNON, Vec3, error, js, fillRaycastResult, toCannonRaycastOptions, CannonShape, CannonSharedBody, CannonWorld, from, to, raycastOpt;
+
+  function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
+  function setupFromAndTo(worldRay, distance) {
+    Vec3.copy(from, worldRay.o);
+    worldRay.computeHit(to, distance);
+  }
+
+  _export("CannonWorld", void 0);
+
+  return {
+    setters: [function (_cocosCannon) {
+      CANNON = _cocosCannon.default;
+    }, function (_coreIndexJs) {
+      Vec3 = _coreIndexJs.Vec3;
+      error = _coreIndexJs.error;
+      js = _coreIndexJs.js;
+    }, function (_cannonUtilJs) {
+      fillRaycastResult = _cannonUtilJs.fillRaycastResult;
+      toCannonRaycastOptions = _cannonUtilJs.toCannonRaycastOptions;
+    }, function (_shapesCannonShapeJs) {
+      CannonShape = _shapesCannonShapeJs.CannonShape;
+    }, function (_cannonSharedBodyJs) {
+      CannonSharedBody = _cannonSharedBodyJs.CannonSharedBody;
+    }],
+    execute: function () {
+      _export("CannonWorld", CannonWorld = class CannonWorld {
+        get impl() {
+          return this._world;
+        }
+
+        setDefaultMaterial(mat) {
+          this._world.defaultMaterial.friction = mat.friction;
+          this._world.defaultMaterial.restitution = mat.restitution;
+
+          if (CannonShape.idToMaterial[mat.id] != null) {
+            CannonShape.idToMaterial[mat.id] = this._world.defaultMaterial;
+          }
+        }
+
+        setAllowSleep(v) {
+          this._world.allowSleep = v;
+        }
+
+        setGravity(gravity) {
+          Vec3.copy(this._world.gravity, gravity);
+        } // get defaultContactMaterial () {
+        //     return this._defaultContactMaterial;
+        // }
+
+
+        constructor() {
+          this.bodies = [];
+          this.constraints = [];
+          this._world = void 0;
+          this._world = new CANNON.World();
+          this._world.broadphase = new CANNON.NaiveBroadphase(); // this._world.broadphase = new CANNON.SAPBroadphase(this._world);
+
+          this._world.solver.iterations = 10;
+          this._world.solver.tolerance = 0.0001;
+          this._world.defaultContactMaterial.contactEquationStiffness = 1000000;
+          this._world.defaultContactMaterial.frictionEquationStiffness = 1000000;
+          this._world.defaultContactMaterial.contactEquationRelaxation = 3;
+          this._world.defaultContactMaterial.frictionEquationRelaxation = 3;
+        }
+
+        destroy() {
+          if (this.constraints.length || this.bodies.length) error('You should destroy all physics component first.');
+          this._world.broadphase = null;
+          this._world = null;
+        }
+
+        emitEvents() {
+          this._world.emitTriggeredEvents();
+
+          this._world.emitCollisionEvents();
+        }
+
+        syncSceneToPhysics() {
+          for (let i = 0; i < this.bodies.length; i++) {
+            this.bodies[i].syncSceneToPhysics();
+          }
+        }
+
+        syncAfterEvents() {
+          this.syncSceneToPhysics();
+        }
+
+        step(deltaTime, timeSinceLastCalled, maxSubStep) {
+          if (this.bodies.length === 0) return;
+
+          this._world.step(deltaTime, timeSinceLastCalled, maxSubStep); // sync physics to scene
+
+
+          for (let i = 0; i < this.bodies.length; i++) {
+            this.bodies[i].syncPhysicsToScene();
+          }
+        }
+
+        raycastClosest(worldRay, options, result) {
+          setupFromAndTo(worldRay, options.maxDistance);
+          toCannonRaycastOptions(raycastOpt, options);
+
+          const hit = this._world.raycastClosest(from, to, raycastOpt, CannonWorld.rayResult);
+
+          if (hit) {
+            fillRaycastResult(result, CannonWorld.rayResult);
+          }
+
+          return hit;
+        }
+
+        raycast(worldRay, options, pool, results) {
+          setupFromAndTo(worldRay, options.maxDistance);
+          toCannonRaycastOptions(raycastOpt, options);
+
+          const hit = this._world.raycastAll(from, to, raycastOpt, result => {
+            const r = pool.add();
+            fillRaycastResult(r, result);
+            results.push(r);
+          });
+
+          return hit;
+        }
+
+        getSharedBody(node, wrappedBody) {
+          return CannonSharedBody.getSharedBody(node, this, wrappedBody);
+        }
+
+        addSharedBody(sharedBody) {
+          const i = this.bodies.indexOf(sharedBody);
+
+          if (i < 0) {
+            this.bodies.push(sharedBody);
+
+            this._world.addBody(sharedBody.body);
+          }
+        }
+
+        removeSharedBody(sharedBody) {
+          const i = this.bodies.indexOf(sharedBody);
+
+          if (i >= 0) {
+            js.array.fastRemoveAt(this.bodies, i);
+
+            this._world.remove(sharedBody.body);
+          }
+        } //  addContactMaterial (contactMaterial: ContactMaterial) {
+        //     this._cannonWorld.addContactMaterial(contactMaterial._getImpl());
+        // }
+
+
+        addConstraint(constraint) {
+          const i = this.constraints.indexOf(constraint);
+
+          if (i < 0) {
+            this.constraints.push(constraint);
+
+            this._world.addConstraint(constraint.impl);
+          }
+        }
+
+        removeConstraint(constraint) {
+          const i = this.constraints.indexOf(constraint);
+
+          if (i >= 0) {
+            js.array.fastRemoveAt(this.constraints, i);
+
+            this._world.removeConstraint(constraint.impl);
+          }
+        }
+
+      });
+
+      CannonWorld.rayResult = new CANNON.RaycastResult();
+      from = new CANNON.Vec3();
+      to = new CANNON.Vec3();
+      raycastOpt = {
+        checkCollisionResponse: false,
+        collisionFilterGroup: -1,
+        collisionFilterMask: -1,
+        skipBackfaces: true
+      };
+    }
+  };
+});
