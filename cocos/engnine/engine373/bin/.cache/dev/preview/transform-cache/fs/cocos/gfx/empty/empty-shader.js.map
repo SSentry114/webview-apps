@@ -1,1 +1,0 @@
-{"version":3,"sources":["../../../../../../../../../cocos/gfx/empty/empty-shader.ts"],"names":["debug","Shader","EmptyShader","initialize","info","name","destroy"],"mappings":";;;;;;;;;;;AAwBSA,MAAAA,K,gBAAAA,K;;AAEAC,MAAAA,M,iBAAAA,M;;;6BAEIC,W;;;;;;;;;eACFC,U,GAAP,oBAAmBC,IAAnB,EAA+C;AAC3CJ,UAAAA,KAAK,cAAYI,IAAI,CAACC,IAAjB,8BAAL;AACH,S;;eACMC,O,GAAP,mBAAkB,CAAE,C;;;QAJSL,M"}

@@ -1,1 +1,0 @@
-{"version":3,"sources":["file:///Users/user/Documents/cocos/engnine/engine373/editor/exports/serialization.ts"],"names":["CCON","encodeCCONJson","encodeCCONBinary","BufferBuilder","decodeCCONBinary","parseCCONJson"],"mappings":";;;;;;wCAEIA,I;kDACAC,c;oDACAC,gB;iDACAC,a;oDACAC,gB;iDACAC"}
