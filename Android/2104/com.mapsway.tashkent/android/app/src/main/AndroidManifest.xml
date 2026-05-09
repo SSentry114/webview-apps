@@ -3,7 +3,7 @@
     <!-- (Tuỳ chọn) nếu cần kiểm tra trạng thái mạng -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
-        android:label="Maps Way Tashkent"
+        android:label="Tashkent Stops finder"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity

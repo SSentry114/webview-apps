@@ -3,7 +3,7 @@
     <!-- (Tuỳ chọn) nếu cần kiểm tra trạng thái mạng -->
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
     <application
-        android:label="RoutesHere Vientiane"
+        android:label="RoutesHere"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <activity
