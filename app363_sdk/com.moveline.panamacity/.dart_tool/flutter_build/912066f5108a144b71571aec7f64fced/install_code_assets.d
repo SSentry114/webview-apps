@@ -1,0 +1,1 @@
+ /Users/user/Documents/webview-apps/app363_sdk/com.moveline.panamacity/.dart_tool/flutter_build/912066f5108a144b71571aec7f64fced/native_assets.json: 

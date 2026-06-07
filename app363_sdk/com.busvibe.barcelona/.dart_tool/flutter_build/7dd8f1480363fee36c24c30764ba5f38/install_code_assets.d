@@ -1,0 +1,1 @@
+ /Users/user/Documents/com.busvibe.barcelona/.dart_tool/flutter_build/7dd8f1480363fee36c24c30764ba5f38/native_assets.json: 

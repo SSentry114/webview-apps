@@ -1,0 +1,18 @@
+{
+  "app_name": "ZipBus Bucharest",
+  "app_folder": "sentry/",
+  "copyright": "2026 Team.",
+  "code_type": "flutter",
+  "kids_age_band": "null",
+  "update_screenshots": true,
+  "marketing_url": "",
+  "category": "Navigation",
+  "promotional_text": "",
+  "description": "Navigate Bucharest with ease! BusCompass offers 30 bus routes, 30 train lines, bike rentals, top attractions & interactive maps — all with real-time arrivals, favorites, and dark mode support..",
+  "keywords": "public transport, travel, bus routes, bus, transit map",
+  "support_url": "https://docs.google.com/forms/d/18wZb-WsAVaYdpIY8b_2Hm4vIDsRUtzypfYhzrfKBuqU/viewform",
+  "privacy_policy_url": "https://freeprivacyone.netdummy.org/ZIPBUS_BUCHAREST_privacy.html",
+  "platform": "hotupdate",
+  "hotupdate_version": "-",
+  "brand": "-"
+}

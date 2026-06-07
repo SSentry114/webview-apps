@@ -1,0 +1,1 @@
+ /Users/user/Documents/com.busbridge.bogota/.dart_tool/flutter_build/e63396b7d0f7631bc1c1be3e5599c311/native_assets.json: 

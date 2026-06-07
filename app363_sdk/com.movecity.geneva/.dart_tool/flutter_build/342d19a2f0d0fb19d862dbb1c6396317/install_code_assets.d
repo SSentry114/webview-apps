@@ -1,0 +1,1 @@
+ /Users/user/Documents/com.movecity.geneva/.dart_tool/flutter_build/342d19a2f0d0fb19d862dbb1c6396317/native_assets.json: 
