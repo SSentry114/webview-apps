@@ -50,26 +50,40 @@
 			remoteGlobalIDString = 97C146ED1CF9000F007C117D;
 			remoteInfo = Runner;
 		};
-		CE373B2E2F56DB95009188F6 /* PBXContainerItemProxy */ = {
+		CE59E1B22FE3FC5400D4EFB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+			containerPortal = CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 661A597C00644895910017D0;
+			remoteGlobalIDString = 26787DF62DBD4E6E845360A4;
 			remoteInfo = boost_container;
 		};
-		CE373B302F56DB95009188F6 /* PBXContainerItemProxy */ = {
+		CE59E1B42FE3FC5400D4EFB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+			containerPortal = CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = B604E47A30104D9F95D6DF76;
+			remoteGlobalIDString = 394873B642CF4DB3B9249AD2;
 			remoteInfo = cocos_engine;
 		};
-		CE373B322F56DB95009188F6 /* PBXContainerItemProxy */ = {
+		CE59E1B62FE3FC5400D4EFB9 /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+			containerPortal = CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = F937C2C0C3B845A2B4D217C3;
+			remoteGlobalIDString = E0915899DE9149EC86839777;
 			remoteInfo = "flutter-mobile";
+		};
+		CE59E1B82FE3FC7100D4EFB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = D470FF66B23C4E3EB300A326;
+			remoteInfo = boost_container;
+		};
+		CE59E1BA2FE3FC7100D4EFB9 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */;
+			proxyType = 1;
+			remoteGlobalIDString = 0CF83D5A28694155BBAA6B30;
+			remoteInfo = cocos_engine;
 		};
 /* End PBXContainerItemProxy section */
 
@@ -135,7 +149,7 @@
 		CE131F082E7975CD009416EF /* SDKWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SDKWrapper.mm; sourceTree = "<group>"; };
 		CE131F092E7975CD009416EF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CE131F0A2E7975CD009416EF /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = flutter.xcodeproj; path = ../../../flutter/build/ios/proj/flutter.xcodeproj; sourceTree = SOURCE_ROOT; };
+		CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = flutter.xcodeproj; path = /Users/user/flutter/build/ios/proj/flutter.xcodeproj; sourceTree = "<absolute>"; };
 		CEC1FDD52E7E80AB00039F4C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		CEC1FDD72E7EC36500039F4C /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
 		DC9AD3FEE00E8EBADFE295FF /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
@@ -254,7 +268,7 @@
 				97C146EF1CF9000F007C117D /* Products */,
 				438A24F0E73E70B8B89E2CCC /* Pods */,
 				302E8CF8316B6FD9F7CB4A59 /* Frameworks */,
-				CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */,
+				CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -296,12 +310,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CE373B262F56DB95009188F6 /* Products */ = {
+		CE59E1AA2FE3FC5300D4EFB9 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE373B2F2F56DB95009188F6 /* libboost_container.a */,
-				CE373B312F56DB95009188F6 /* libcocos_engine.a */,
-				CE373B332F56DB95009188F6 /* flutter-mobile */,
+				CE59E1B32FE3FC5400D4EFB9 /* libboost_container.a */,
+				CE59E1B52FE3FC5400D4EFB9 /* libcocos_engine.a */,
+				CE59E1B72FE3FC5400D4EFB9 /* flutter-mobile */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -340,11 +354,13 @@
 				9705A1C41CF9048500538489 /* Embed Frameworks */,
 				3B06AD1E1E4923F5004D2608 /* Thin Binary */,
 				A5AC96887ECF37274934CE2C /* [CP] Copy Pods Resources */,
-				36401B011923A0F578163DE8 /* [CP] Embed Pods Frameworks */,
+				9BEBB595E79C02FB2E7720D3 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				CE59E1B92FE3FC7100D4EFB9 /* PBXTargetDependency */,
+				CE59E1BB2FE3FC7100D4EFB9 /* PBXTargetDependency */,
 			);
 			name = Runner;
 			productName = Runner;
@@ -384,8 +400,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = CE373B262F56DB95009188F6 /* Products */;
-					ProjectRef = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+					ProductGroup = CE59E1AA2FE3FC5300D4EFB9 /* Products */;
+					ProjectRef = CE59E1A72FE3FC5300D4EFB9 /* flutter.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -397,26 +413,26 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		CE373B2F2F56DB95009188F6 /* libboost_container.a */ = {
+		CE59E1B32FE3FC5400D4EFB9 /* libboost_container.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libboost_container.a;
-			remoteRef = CE373B2E2F56DB95009188F6 /* PBXContainerItemProxy */;
+			remoteRef = CE59E1B22FE3FC5400D4EFB9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CE373B312F56DB95009188F6 /* libcocos_engine.a */ = {
+		CE59E1B52FE3FC5400D4EFB9 /* libcocos_engine.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libcocos_engine.a;
-			remoteRef = CE373B302F56DB95009188F6 /* PBXContainerItemProxy */;
+			remoteRef = CE59E1B42FE3FC5400D4EFB9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CE373B332F56DB95009188F6 /* flutter-mobile */ = {
+		CE59E1B72FE3FC5400D4EFB9 /* flutter-mobile */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			name = "flutter-mobile";
 			path = "flutter-mobile.app";
-			remoteRef = CE373B322F56DB95009188F6 /* PBXContainerItemProxy */;
+			remoteRef = CE59E1B62FE3FC5400D4EFB9 /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -443,23 +459,6 @@
 /* End PBXResourcesBuildPhase section */
 
 /* Begin PBXShellScriptBuildPhase section */
-		36401B011923A0F578163DE8 /* [CP] Embed Pods Frameworks */ = {
-			isa = PBXShellScriptBuildPhase;
-			buildActionMask = 2147483647;
-			files = (
-			);
-			inputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
-			);
-			name = "[CP] Embed Pods Frameworks";
-			outputFileListPaths = (
-				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			runOnlyForDeploymentPostprocessing = 0;
-			shellPath = /bin/sh;
-			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
-			showEnvVarsInLog = 0;
-		};
 		3B06AD1E1E4923F5004D2608 /* Thin Binary */ = {
 			isa = PBXShellScriptBuildPhase;
 			alwaysOutOfDate = 1;
@@ -490,6 +489,23 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "/bin/sh \"$FLUTTER_ROOT/packages/flutter_tools/bin/xcode_backend.sh\" build";
+		};
+		9BEBB595E79C02FB2E7720D3 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputFileListPaths = (
+				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
 		};
 		A5AC96887ECF37274934CE2C /* [CP] Copy Pods Resources */ = {
 			isa = PBXShellScriptBuildPhase;
@@ -582,6 +598,16 @@
 			isa = PBXTargetDependency;
 			target = 97C146ED1CF9000F007C117D /* Runner */;
 			targetProxy = 331C80F5294D02FB00263BE5 /* PBXContainerItemProxy */;
+		};
+		CE59E1B92FE3FC7100D4EFB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = boost_container;
+			targetProxy = CE59E1B82FE3FC7100D4EFB9 /* PBXContainerItemProxy */;
+		};
+		CE59E1BB2FE3FC7100D4EFB9 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			name = cocos_engine;
+			targetProxy = CE59E1BA2FE3FC7100D4EFB9 /* PBXContainerItemProxy */;
 		};
 /* End PBXTargetDependency section */
 

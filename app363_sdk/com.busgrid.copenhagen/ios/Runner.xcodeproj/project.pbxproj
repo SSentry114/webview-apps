@@ -50,25 +50,25 @@
 			remoteGlobalIDString = 97C146ED1CF9000F007C117D;
 			remoteInfo = Runner;
 		};
-		CE373B2E2F56DB95009188F6 /* PBXContainerItemProxy */ = {
+		CECA2E2B2FE3FDBB0026F27A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+			containerPortal = CECA2E202FE3FDBA0026F27A /* flutter.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = 661A597C00644895910017D0;
+			remoteGlobalIDString = 26787DF62DBD4E6E845360A4;
 			remoteInfo = boost_container;
 		};
-		CE373B302F56DB95009188F6 /* PBXContainerItemProxy */ = {
+		CECA2E2D2FE3FDBB0026F27A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+			containerPortal = CECA2E202FE3FDBA0026F27A /* flutter.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = B604E47A30104D9F95D6DF76;
+			remoteGlobalIDString = 394873B642CF4DB3B9249AD2;
 			remoteInfo = cocos_engine;
 		};
-		CE373B322F56DB95009188F6 /* PBXContainerItemProxy */ = {
+		CECA2E2F2FE3FDBB0026F27A /* PBXContainerItemProxy */ = {
 			isa = PBXContainerItemProxy;
-			containerPortal = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+			containerPortal = CECA2E202FE3FDBA0026F27A /* flutter.xcodeproj */;
 			proxyType = 2;
-			remoteGlobalIDString = F937C2C0C3B845A2B4D217C3;
+			remoteGlobalIDString = E0915899DE9149EC86839777;
 			remoteInfo = "flutter-mobile";
 		};
 /* End PBXContainerItemProxy section */
@@ -135,9 +135,9 @@
 		CE131F082E7975CD009416EF /* SDKWrapper.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = SDKWrapper.mm; sourceTree = "<group>"; };
 		CE131F092E7975CD009416EF /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
 		CE131F0A2E7975CD009416EF /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
-		CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = flutter.xcodeproj; path = ../../../flutter/build/ios/proj/flutter.xcodeproj; sourceTree = SOURCE_ROOT; };
 		CEC1FDD52E7E80AB00039F4C /* CloudKit.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CloudKit.framework; path = System/Library/Frameworks/CloudKit.framework; sourceTree = SDKROOT; };
 		CEC1FDD72E7EC36500039F4C /* Runner.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Runner.entitlements; sourceTree = "<group>"; };
+		CECA2E202FE3FDBA0026F27A /* flutter.xcodeproj */ = {isa = PBXFileReference; lastKnownFileType = "wrapper.pb-project"; name = flutter.xcodeproj; path = /Users/user/flutter/build/ios/proj/flutter.xcodeproj; sourceTree = "<absolute>"; };
 		DC9AD3FEE00E8EBADFE295FF /* Pods-Runner.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Runner.debug.xcconfig"; path = "Target Support Files/Pods-Runner/Pods-Runner.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -254,7 +254,7 @@
 				97C146EF1CF9000F007C117D /* Products */,
 				438A24F0E73E70B8B89E2CCC /* Pods */,
 				302E8CF8316B6FD9F7CB4A59 /* Frameworks */,
-				CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */,
+				CECA2E202FE3FDBA0026F27A /* flutter.xcodeproj */,
 			);
 			sourceTree = "<group>";
 		};
@@ -296,12 +296,12 @@
 			name = "Supporting Files";
 			sourceTree = "<group>";
 		};
-		CE373B262F56DB95009188F6 /* Products */ = {
+		CECA2E232FE3FDBA0026F27A /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				CE373B2F2F56DB95009188F6 /* libboost_container.a */,
-				CE373B312F56DB95009188F6 /* libcocos_engine.a */,
-				CE373B332F56DB95009188F6 /* flutter-mobile */,
+				CECA2E2C2FE3FDBB0026F27A /* libboost_container.a */,
+				CECA2E2E2FE3FDBB0026F27A /* libcocos_engine.a */,
+				CECA2E302FE3FDBB0026F27A /* flutter-mobile */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -384,8 +384,8 @@
 			projectDirPath = "";
 			projectReferences = (
 				{
-					ProductGroup = CE373B262F56DB95009188F6 /* Products */;
-					ProjectRef = CE8A29642F56DB8A00CC2208 /* flutter.xcodeproj */;
+					ProductGroup = CECA2E232FE3FDBA0026F27A /* Products */;
+					ProjectRef = CECA2E202FE3FDBA0026F27A /* flutter.xcodeproj */;
 				},
 			);
 			projectRoot = "";
@@ -397,26 +397,26 @@
 /* End PBXProject section */
 
 /* Begin PBXReferenceProxy section */
-		CE373B2F2F56DB95009188F6 /* libboost_container.a */ = {
+		CECA2E2C2FE3FDBB0026F27A /* libboost_container.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libboost_container.a;
-			remoteRef = CE373B2E2F56DB95009188F6 /* PBXContainerItemProxy */;
+			remoteRef = CECA2E2B2FE3FDBB0026F27A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CE373B312F56DB95009188F6 /* libcocos_engine.a */ = {
+		CECA2E2E2FE3FDBB0026F27A /* libcocos_engine.a */ = {
 			isa = PBXReferenceProxy;
 			fileType = archive.ar;
 			path = libcocos_engine.a;
-			remoteRef = CE373B302F56DB95009188F6 /* PBXContainerItemProxy */;
+			remoteRef = CECA2E2D2FE3FDBB0026F27A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
-		CE373B332F56DB95009188F6 /* flutter-mobile */ = {
+		CECA2E302FE3FDBB0026F27A /* flutter-mobile */ = {
 			isa = PBXReferenceProxy;
 			fileType = "compiled.mach-o.executable";
 			name = "flutter-mobile";
 			path = "flutter-mobile.app";
-			remoteRef = CE373B322F56DB95009188F6 /* PBXContainerItemProxy */;
+			remoteRef = CECA2E2F2FE3FDBB0026F27A /* PBXContainerItemProxy */;
 			sourceTree = BUILT_PRODUCTS_DIR;
 		};
 /* End PBXReferenceProxy section */
@@ -451,13 +451,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Embed Pods Frameworks";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-frameworks-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
@@ -503,13 +499,9 @@
 			inputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-input-files.xcfilelist",
 			);
-			inputPaths = (
-			);
 			name = "[CP] Copy Pods Resources";
 			outputFileListPaths = (
 				"${PODS_ROOT}/Target Support Files/Pods-Runner/Pods-Runner-resources-${CONFIGURATION}-output-files.xcfilelist",
-			);
-			outputPaths = (
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
